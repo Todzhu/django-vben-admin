@@ -121,54 +121,22 @@ USERNAME_FIELD = 'username'
 ALL_MODELS_OBJECTS = []  # 所有app models 对象
 
 # Database
-# https://docs.djangoproject.com/en/4.0/ref/settings/#databases
-# 数据库配置
-if DATABASE_TYPE == "MYSQL":
-    # Mysql数据库
-    DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.mysql",
-            "HOST": DATABASE_HOST,
-            "PORT": DATABASE_PORT,
-            "USER": DATABASE_USER,
-            "PASSWORD": DATABASE_PASSWORD,
-            "NAME": DATABASE_NAME,
-        }
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.mysql",
+        "HOST": DATABASE_HOST,
+        "PORT": DATABASE_PORT,
+        "USER": DATABASE_USER,
+        "PASSWORD": DATABASE_PASSWORD,
+        "NAME": DATABASE_NAME,
     }
-elif DATABASE_TYPE == "SQLSERVER":
-    # SqlServer数据库
-    DATABASES = {
-        "default": {
-            "ENGINE": "mssql",
-            "HOST": DATABASE_HOST,
-            "PORT": DATABASE_PORT,
-            "USER": DATABASE_USER,
-            "PASSWORD": DATABASE_PASSWORD,
-            "NAME": DATABASE_NAME,
-            # 全局开启事务，绑定的是http请求响应整个过程
-            'ATOMIC_REQUESTS': True,
-            'OPTIONS': {
-                'driver': 'ODBC Driver 17 for SQL Server',
-            },
-        }
-    }
-else:
-    # sqlite3 数据库
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-            'OPTIONS': {
-                'timeout': 20,
-            },
-        }
-    }
+}
 
 # 缓存配置
 CACHES = {
     "default": {
-        "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": f'{REDIS_URL}/1',
+        "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
+        "LOCATION": 'unique-snowflake',
         "TIMEOUT": None,
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
@@ -177,7 +145,7 @@ CACHES = {
 }
 
 # celery 配置
-CELERY_BROKER_URL = f'{REDIS_URL}/2'
+# CELERY_BROKER_URL = f'{REDIS_URL}/2'
 DJANGO_CELERY_BEAT_TZ_AWARE = False
 CELERY_ENABLE_UTC = False
 CELERY_WORKER_CONCURRENCY = 2  # 并发数
@@ -187,7 +155,7 @@ CELERY_RESULT_BACKEND = 'django-db'  # celery结果存储到数据库中
 CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'  # Backend数据库
 
 # token 有效时间 时 分 秒
-TOKEN_LIFETIME = 12 * 60 * 60
+TOKEN_LIFETIME = 3 * 12 * 60 * 60
 # TOKEN_LIFETIME = 50
 
 # 接口白名单，不需要授权直接访问

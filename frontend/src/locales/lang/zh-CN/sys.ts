@@ -65,8 +65,8 @@ export default {
     signUpFormTitle: '注册',
     forgetFormTitle: '重置密码',
 
-    signInTitle: 'Python 后台管理系统',
-    signInDesc: '后端使用Django Ninja 开发',
+    signInTitle: 'MultiOmics',
+    signInDesc: '提供简单、易用、快速的多组学分析工具',
     policy: '我同意xxx隐私政策',
     scanSign: `扫码后点击"确认"，即可完成登录`,
 

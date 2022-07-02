@@ -18,7 +18,7 @@
           <div class="my-auto">
             <img
               :alt="title"
-              src="../../../assets/svg/login-box-bg.svg"
+              src="../../../assets/svg/bg-box.svg"
               class="w-1/2 -mt-16 -enter-x"
             />
             <div class="mt-10 font-medium text-white -enter-x">
@@ -129,7 +129,7 @@
       width: 100%;
       height: 100%;
       margin-left: -48%;
-      background-image: url(/@/assets/svg/login-bg.svg);
+      background-image: url(/@/assets/svg/login-bg.jpg);
       background-position: 100%;
       background-repeat: no-repeat;
       background-size: auto 100%;
